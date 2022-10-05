@@ -28,10 +28,9 @@
                 android:id="@+id/image_profile"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/profile_picture"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.545"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 />
@@ -169,6 +168,7 @@
                     android:gravity="top"
                     android:hint="About You"
                     android:inputType="textMultiLine"
+                    android:layout_marginBottom="56dp"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
