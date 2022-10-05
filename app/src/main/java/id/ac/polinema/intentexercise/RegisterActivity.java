@@ -22,10 +22,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private CircleImageView avatarImg;
-    private ImageView inputImgBtn;
-    private TextInputEditText et_fullname, et_email, et_password, et_confirm_password, et_homepage, et_about;
-    private Button submitBtn;
+    private CircleImageView image_profile;
+    private ImageView input_img;
+    private TextInputEditText input_fullname, input_email, input_password, input_confirm_password, input_homepage, input_about;
+    private Button button_OK;
 
     Bitmap bitmap;
     public static final String IMAGE_KEY = "image";
@@ -44,38 +44,38 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        avatarImg = findViewById(R.id.image_profile);
-        inputImgBtn = findViewById(R.id.imageView);
-        et_fullname = findViewById(R.id.text_fullname);
-        et_email = findViewById(R.id.text_email);
-        et_password = findViewById(R.id.text_password);
-        et_confirm_password = findViewById(R.id.text_confirm_password);
-        et_homepage = findViewById(R.id.text_homepage);
-        et_about = findViewById(R.id.text_about);
-        submitBtn = findViewById(R.id.button_ok);
+        image_profile = findViewById(R.id.image_profile);
+        input_img = findViewById(R.id.imageView);
+        input_fullname = findViewById(R.id.text_fullname);
+        input_email = findViewById(R.id.text_email);
+        input_password = findViewById(R.id.text_password);
+        input_confirm_password = findViewById(R.id.text_confirm_password);
+        input_homepage = findViewById(R.id.text_homepage);
+        input_about = findViewById(R.id.text_about);
+        button_OK = findViewById(R.id.button_ok);
 
-        inputImgBtn.setOnClickListener(new View.OnClickListener() {
+        input_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivityForResult(new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI), GALLERY_REQUEST_CODE);
             }
         });
 
-        submitBtn.setOnClickListener(new View.OnClickListener() {
+        button_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                avatarImg.buildDrawingCache();
-                Bitmap img = avatarImg.getDrawingCache();
+                image_profile.buildDrawingCache();
+                Bitmap img = image_profile.getDrawingCache();
 
                 Bundle extras = new Bundle();
                 extras.putParcelable(IMAGE_KEY, img);
 
-                String fullname = et_fullname.getText().toString();
-                String email = et_email.getText().toString();
-                String password = et_password.getText().toString();
-                String confirmPassword = et_confirm_password.getText().toString();
-                String homepage = et_homepage.getText().toString();
-                String about = et_about.getText().toString();
+                String fullname = input_fullname.getText().toString();
+                String email = input_email.getText().toString();
+                String password = input_password.getText().toString();
+                String confirmPassword = input_confirm_password.getText().toString();
+                String homepage = input_homepage.getText().toString();
+                String about = input_about.getText().toString();
 
                 Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
                 intent.putExtras(extras);
@@ -102,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                 try {
                     Uri imageUri = data.getData();
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                    avatarImg.setImageBitmap(bitmap);
+                    image_profile.setImageBitmap(bitmap);
                 }
                 catch (IOException e){
                     Toast.makeText(this, "Cannot load image", Toast.LENGTH_SHORT).show();
